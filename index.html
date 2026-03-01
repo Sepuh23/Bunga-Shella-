@@ -201,7 +201,7 @@
             backface-visibility: hidden;
         }
 
-        /* kelopak - dengan animasi mekar */
+        /* KELOPAK - pake transform masing2 biar rapi */
         .petal {
             position: absolute;
             width: 40px;
@@ -215,32 +215,18 @@
             transition: all 0.5s ease;
         }
 
-        /* posisi awal kelopak (belum mekar sempurna) */
-        .flower .petal {
-            transform: scale(0.8) rotate(0deg) translateY(-22px);
-            opacity: 0.7;
-        }
+        /* POSISI KELOPAK SAAT SCALE 0 (belum mekar) */
+        .flower .petal1 { transform: scale(0) rotate(0deg) translateY(-22px); background: #ffd9ec; }
+        .flower .petal2 { transform: scale(0) rotate(72deg) translateY(-22px); background: #ffe1f0; }
+        .flower .petal3 { transform: scale(0) rotate(144deg) translateY(-22px); background: #ffe9f3; width: 44px; height: 44px; }
+        .flower .petal4 { transform: scale(0) rotate(216deg) translateY(-22px); background: #ffd1e6; }
+        .flower .petal5 { transform: scale(0) rotate(288deg) translateY(-22px); background: #ffc9e2; }
 
-        /* posisi mekar sempurna */
-        .flower.bloom .petal {
-            transform: scale(1) rotate(0deg) translateY(-22px);
-            opacity: 1;
-        }
-
-        /* variasi warna dan posisi per kelopak */
-        .flower .petal1 { transform: scale(0.8) rotate(0deg) translateY(-22px); background: #ffd9ec; }
+        /* POSISI KELOPAK SAAT MEKAR (scale 1) */
         .flower.bloom .petal1 { transform: scale(1) rotate(0deg) translateY(-22px); }
-        
-        .flower .petal2 { transform: scale(0.8) rotate(72deg) translateY(-22px); background: #ffe1f0; }
         .flower.bloom .petal2 { transform: scale(1) rotate(72deg) translateY(-22px); }
-        
-        .flower .petal3 { transform: scale(0.8) rotate(144deg) translateY(-22px); background: #ffe9f3; width: 44px; height: 44px; }
         .flower.bloom .petal3 { transform: scale(1) rotate(144deg) translateY(-22px); }
-        
-        .flower .petal4 { transform: scale(0.8) rotate(216deg) translateY(-22px); background: #ffd1e6; }
         .flower.bloom .petal4 { transform: scale(1) rotate(216deg) translateY(-22px); }
-        
-        .flower .petal5 { transform: scale(0.8) rotate(288deg) translateY(-22px); background: #ffc9e2; }
         .flower.bloom .petal5 { transform: scale(1) rotate(288deg) translateY(-22px); }
 
         /* FOTO DI TENGAH BUNGA */
@@ -261,7 +247,7 @@
             backface-visibility: hidden;
         }
 
-        /* foto muncul setelah kelopak mekar */
+        /* foto muncul setelah mekar */
         .flower.bloom .flower-photo {
             transform: translate(-50%, -50%) scale(1) translateZ(0);
         }
@@ -272,16 +258,15 @@
             opacity: 0;
         }
 
-        /* ANIMASI SETELAH MEKAR - BIKIN KELIATAN HIDUP */
+        /* ANIMASI SETELAH MEKAR - GERAK LAMBAT BIAR KELIATAN */
         .flower.bloom {
             animation: flowerLive 4s ease-in-out infinite;
         }
 
-        /* animasi buat keliatan gerak */
         @keyframes flowerLive {
             0% { transform: translateX(-50%) translateY(0) rotate(0deg) translateZ(0); }
             25% { transform: translateX(-50%) translateY(-3px) rotate(-1deg) translateZ(0); }
-            50% { transform: translateX(-50%) translateY(0) rotate(1deg) translateZ(0); }
+            50% { transform: translateX(-50%) translateY(1px) rotate(1deg) translateZ(0); }
             75% { transform: translateX(-50%) translateY(-2px) rotate(-0.5deg) translateZ(0); }
             100% { transform: translateX(-50%) translateY(0) rotate(0deg) translateZ(0); }
         }
@@ -317,13 +302,22 @@
             .bud-photo { width: 38px; height: 38px; margin-top: -19px; }
             .bud-photo.moved-up { transform: translateY(-80px) scale(0.4) translateZ(0); }
             .flower { width: 80px; height: 80px; top: -35px; }
-            .flower .petal { width: 35px; height: 35px; transform: scale(0.8) rotate(0deg) translateY(-18px); }
+            
+            .flower .petal { width: 35px; height: 35px; }
             .flower .petal3 { width: 38px; height: 38px; }
-            .flower.bloom .petal { transform: scale(1) rotate(0deg) translateY(-18px); }
+            
+            .flower .petal1 { transform: scale(0) rotate(0deg) translateY(-18px); }
+            .flower .petal2 { transform: scale(0) rotate(72deg) translateY(-18px); }
+            .flower .petal3 { transform: scale(0) rotate(144deg) translateY(-18px); }
+            .flower .petal4 { transform: scale(0) rotate(216deg) translateY(-18px); }
+            .flower .petal5 { transform: scale(0) rotate(288deg) translateY(-18px); }
+            
+            .flower.bloom .petal1 { transform: scale(1) rotate(0deg) translateY(-18px); }
             .flower.bloom .petal2 { transform: scale(1) rotate(72deg) translateY(-18px); }
             .flower.bloom .petal3 { transform: scale(1) rotate(144deg) translateY(-18px); }
             .flower.bloom .petal4 { transform: scale(1) rotate(216deg) translateY(-18px); }
             .flower.bloom .petal5 { transform: scale(1) rotate(288deg) translateY(-18px); }
+            
             .flower-photo { width: 34px; height: 34px; }
         }
 
