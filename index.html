@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Buatt Shella Cantikk </title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffd9e6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease;
+        }
+        body.fade-out { opacity: 0; }
+
+        /* HALAMAN INDEX */
+        .index-page {
+            width: 100%;
+            padding: 1.5rem;
+        }
+        .card-index {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 245, 245, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 48px 48px 32px 32px;
+            padding: 2.5rem 2rem 3rem;
+            box-shadow: 0 30px 50px -20px rgba(199, 21, 133, 0.2), 0 0 0 1px rgba(255,220,240,0.8) inset;
+            text-align: center;
+            border: 1px solid rgba(255,200,220,0.7);
+        }
+
+        .foto-bulat {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 20px 30px -8px rgba(199,21,133,0.2), 0 0 0 4px white, 0 0 0 5px #ffc0cb;
+            margin: 0 auto 1.8rem;
+            display: block;
+            background: #ffb6c1;
+        }
+
+        .card-index h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 1.9rem;
+            color: #a03e5a;
+            margin-bottom: 1rem;
+        }
+        .card-index p {
+            color: #b3476b;
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-mulai {
+            background: white;
+            border: none;
+            padding: 0.9rem 2.8rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #b34167;
+            box-shadow: 0 12px 25px -10px #f28eb8, 0 0 0 1px rgba(255,160,190,0.5);
+            cursor: pointer;
+            transition: 0.25s;
+            font-family: 'Poppins', sans-serif;
+            border: 1px solid rgba(255,220,240,0.9);
+        }
+        .btn-mulai:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 30px -10px #f06292, 0 0 0 2px white;
+            background: #fff0f5;
+        }
+
+        /* HALAMAN FLOWER */
+        .flower-page {
+            width: 100%;
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 30%, #ffd0dd, #fbaac3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 1rem 0.5rem;
+        }
+
+        .glow-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(ellipse at 50% 60%, rgba(255,200,230,0.7) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* FOTO UTAMA DI TENGAH */
+        .foto-utama-tengah {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 25px 40px -8px #b0306e, 0 0 0 5px white, 0 0 0 10px #ffb0c3;
+            margin-bottom: 2rem;
+            background: #fbaac3;
+            border: 2px solid #ffd0dd;
+            transition: all 0.3s;
+            z-index: 15;
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+
+        /* area 5 bunga */
+        .bloom-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* setiap unit bunga */
+        .flower-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 140px;
+            position: relative;
+        }
+
+        /* batang */
+        .stem {
+            width: 5px;
+            height: 180px;
+            background: linear-gradient(145deg, #d9a4b5, #f7c0d0);
+            border-radius: 20px;
+            box-shadow: 0 0 20px #ffb6c1, 0 4px 8px rgba(200,120,140,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* bulatan foto (kuncup) */
+        .bud-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 25px #fbaac3, 0 0 0 3px white, 0 0 0 5px #ffb0c6;
+            margin-top: -30px;
+            transform: translateY(0);
+            transition: transform 1.2s cubic-bezier(0.25, 0.1, 0.15, 1.2), opacity 0.5s;
+            position: relative;
+            z-index: 20;
+            background: #ffb6c1;
+            border: 2px solid white;
+        }
+
+        /* bunga */
+        .flower {
+            width: 140px;
+            height: 140px;
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            opacity: 0;
+            transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s;
+            filter: drop-shadow(0 0 30px #ffa5c3);
+            z-index: 30;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* kelopak */
+        .petal {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            background: white;
+            border-radius: 60% 40% 60% 40% / 50% 50% 50% 50%;
+            box-shadow: 0 0 25px #fff0f5, 2px 4px 15px rgba(240,150,180,0.4);
+            border: 1px solid #ffe2ed;
+            transform-origin: center center;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        .petal1 { 
+            transform: rotate(0deg) translateY(-35px); 
+            background: #ffd9ec; 
+        }
+        .petal2 { 
+            transform: rotate(72deg) translateY(-35px); 
+            background: #ffe1f0; 
+        }
+        .petal3 { 
+            transform: rotate(144deg) translateY(-35px); 
+            background: #ffe9f3; 
+            width: 70px; 
+            height: 70px; 
+        }
+        .petal4 { 
+            transform: rotate(216deg) translateY(-35px); 
+            background: #ffd1e6; 
+        }
+        .petal5 { 
+            transform: rotate(288deg) translateY(-35px); 
+            background: #ffc9e2; 
+        }
+
+        /* FOTO DI TENGAH BUNGA */
+        .flower-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 25px #fff0f5, 0 0 0 3px white, 0 0 0 6px #ffb0c6;
+            border: 2px solid white;
+            z-index: 40;
+            background: #fcd1df;
+            animation: photoGlow 3s ease-in-out infinite;
+        }
+
+        /* kondisi bulatan naik */
+        .bud-photo.moved-up {
+            transform: translateY(-150px) scale(0.6);
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        /* bunga mekar - DITAMBAH ANIMASI BERBEDA TIAP BUNGA */
+        .flower.bloom {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* ANIMASI UNTUK BUNGA 1 - Gentle sway */
+        #flower1.bloom {
+            animation: gentleSway 4s ease-in-out infinite;
+        }
+
+        /* ANIMASI UNTUK BUNGA 2 - Soft bounce */
+        #flower2.bloom {
+            animation: softBounce 3.5s ease-in-out infinite;
+        }
+
+        /* ANIMASI UNTUK BUNGA 3 - Twinkle (scale) */
+        #flower3.bloom {
+            animation: softTwinkle 4s ease-in-out infinite;
+        }
+
+        /* ANIMASI UNTUK BUNGA 4 - Spin slow */
+        #flower4.bloom {
+            animation: slowSpin 8s linear infinite;
+        }
+
+        /* ANIMASI UNTUK BUNGA 5 - Float and glow */
+        #flower5.bloom {
+            animation: floatAndGlow 5s ease-in-out infinite;
+        }
+
+        /* KEYFRAMES ANIMASI */
+        @keyframes gentleSway {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            25% { transform: translateX(-52%) rotate(-2deg); }
+            75% { transform: translateX(-48%) rotate(2deg); }
+        }
+
+        @keyframes softBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        @keyframes softTwinkle {
+            0%, 100% { transform: translateX(-50%) scale(1); filter: drop-shadow(0 0 30px #ffa5c3); }
+            50% { transform: translateX(-50%) scale(1.05); filter: drop-shadow(0 0 50px #ffc0d5); }
+        }
+
+        @keyframes slowSpin {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        @keyframes floatAndGlow {
+            0%, 100% { 
+                transform: translateX(-50%) translateY(0); 
+                filter: drop-shadow(0 0 30px #ffa5c3);
+            }
+            33% { 
+                transform: translateX(-52%) translateY(-5px); 
+                filter: drop-shadow(0 0 50px #ffb6d9);
+            }
+            66% { 
+                transform: translateX(-48%) translateY(-8px); 
+                filter: drop-shadow(0 0 60px #ffc0e0);
+            }
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes photoGlow {
+            0%, 100% { box-shadow: 0 0 25px #fff0f5, 0 0 0 3px white, 0 0 0 6px #ffb0c6; }
+            50% { box-shadow: 0 0 35px #ffd0e6, 0 0 0 4px white, 0 0 0 8px #ffc0d0; }
+        }
+
+        /* footer */
+        .foot-message {
+            font-family: 'Playfair Display', serif;
+            color: #b34b72;
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-top: 2rem;
+            opacity: 0.7;
+            z-index: 10;
+            animation: gentleFloat 3s ease-in-out infinite;
+        }
+
+        /* ========== ANDROID / MOBILE ========== */
+        @media (max-width: 700px) {
+            .foto-utama-tengah { 
+                width: 150px; 
+                height: 150px; 
+                margin-bottom: 1.5rem; 
+            }
+            
+            .bloom-area { gap: 0.8rem; }
+            .flower-unit { width: 100px; }
+            .stem { height: 140px; }
+            
+            .bud-photo { 
+                width: 50px; 
+                height: 50px; 
+                margin-top: -25px;
+            }
+            
+            .bud-photo.moved-up { transform: translateY(-115px) scale(0.6); }
+            
+            .flower { 
+                width: 110px; 
+                height: 110px; 
+                top: -45px;
+            }
+            
+            .petal { 
+                width: 50px; 
+                height: 50px; 
+            }
+            
+            .petal1, .petal2, .petal4, .petal5 { 
+                transform: rotate(0deg) translateY(-28px); 
+            }
+            .petal2 { transform: rotate(72deg) translateY(-28px); }
+            .petal3 { 
+                width: 55px; 
+                height: 55px; 
+                transform: rotate(144deg) translateY(-28px); 
+            }
+            .petal4 { transform: rotate(216deg) translateY(-28px); }
+            .petal5 { transform: rotate(288deg) translateY(-28px); }
+            
+            .flower-photo { 
+                width: 48px; 
+                height: 48px; 
+            }
+
+            /* Sesuaikan animasi untuk mobile */
+            @keyframes softBounce {
+                0%, 100% { transform: translateX(-50%) translateY(0); }
+                50% { transform: translateX(-50%) translateY(-5px); }
+            }
+
+            @keyframes slowSpin {
+                0% { transform: translateX(-50%) rotate(0deg); }
+                100% { transform: translateX(-50%) rotate(360deg); }
+            }
+        }
+
+        @media (max-width: 450px) {
+            .foto-utama-tengah { 
+                width: 120px; 
+                height: 120px; 
+                margin-bottom: 1rem;
+            }
+            
+            .flower-unit { width: 80px; }
+            .stem { height: 120px; }
+            
+            .bud-photo { 
+                width: 42px; 
+                height: 42px; 
+                margin-top: -21px;
+            }
+            
+            .bud-photo.moved-up { transform: translateY(-95px) scale(0.6); }
+            
+            .flower { 
+                width: 95px; 
+                height: 95px; 
+                top: -35px; 
+            }
+            
+            .flower-photo { 
+                width: 40px; 
+                height: 40px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- AUDIO ELEMENT (disembunyikan) -->
+    <audio id="bgMusic" loop preload="auto">
+        <!-- GANTI URL INI DENGAN FILE MP3 KAMU -->
+        <source src="123.mp3" type="audio/mpeg">
+        <!-- Fallback kalau file ga ada -->
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- HALAMAN INDEX -->
+    <div id="indexContainer" class="index-page">
+        <div class="card-index">
+            <img class="foto-bulat" id="fotoIndex" src="images/1.png" alt="foto" 
+                 onerror="this.src='https://via.placeholder.com/180x180/fbaac3/ffffff?text=🌸';">
+            <h2>untuk Shella yang cantik</h2>
+            <p>Klik di sini ada sesuatu ✨</p>
+            <button class="btn-mulai" id="keFlower">buka kejutan</button>
+        </div>
+    </div>
+
+    <!-- HALAMAN FLOWER -->
+    <div id="flowerContainer" style="display: none; width: 100%;">
+        <div class="flower-page">
+            <div class="glow-bg"></div>
+            
+            <div class="container">
+                <!-- FOTO UTAMA TENGAH -->
+                <img class="foto-utama-tengah" id="fotoUtama" src="images/6.png" alt="foto utama"
+                     onerror="this.src='https://via.placeholder.com/200x200/fbaac3/ffffff?text=👸';">
+
+                <!-- area 5 bunga -->
+                <div class="bloom-area" id="bloomArea"></div>
+
+                <div class="foot-message">— Cie Orang Cantikk Mekar —</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const indexDiv = document.getElementById('indexContainer');
+            const flowerDiv = document.getElementById('flowerContainer');
+            const btn = document.getElementById('keFlower');
+            const bloomArea = document.getElementById('bloomArea');
+            const bgMusic = document.getElementById('bgMusic');
+
+            // Daftar foto untuk 5 bunga
+            const fotoBungaList = [
+                'images/2.png',
+                'images/3.png',
+                'images/4.png',
+                'images/5.png',
+                'images/7.png'
+            ];
+
+            // Generate 5 unit bunga
+            for (let i = 0; i < 5; i++) {
+                const unit = document.createElement('div');
+                unit.className = 'flower-unit';
+                unit.id = `unit${i+1}`;
+
+                // batang
+                const stem = document.createElement('div');
+                stem.className = 'stem';
+
+                // bulatan foto (kuncup)
+                const bud = document.createElement('img');
+                bud.className = 'bud-photo';
+                bud.id = `bud${i+1}`;
+                bud.alt = 'foto bud';
+                bud.src = fotoBungaList[i];
+                bud.onerror = function() {
+                    this.src = 'https://via.placeholder.com/60x60/fcd1df/b34b72?text=🌸';
+                };
+
+                // bunga
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.id = `flower${i+1}`;
+
+                // 5 kelopak
+                for (let p = 1; p <= 5; p++) {
+                    const petal = document.createElement('div');
+                    petal.className = `petal petal${p}`;
+                    flower.appendChild(petal);
+                }
+
+                // FOTO di tengah bunga
+                const flowerPhoto = document.createElement('img');
+                flowerPhoto.className = 'flower-photo';
+                flowerPhoto.id = `flowerPhoto${i+1}`;
+                flowerPhoto.alt = 'foto bunga';
+                flowerPhoto.src = fotoBungaList[i];
+                flowerPhoto.onerror = function() {
+                    this.src = 'https://via.placeholder.com/60x60/fcd1df/b34b72?text=🌸';
+                };
+                flower.appendChild(flowerPhoto);
+
+                unit.appendChild(stem);
+                unit.appendChild(bud);
+                unit.appendChild(flower);
+                bloomArea.appendChild(unit);
+            }
+
+            // Fungsi reset animasi
+            function resetAnimation() {
+                for (let i = 1; i <= 5; i++) {
+                    const bud = document.getElementById(`bud${i}`);
+                    const flower = document.getElementById(`flower${i}`);
+                    if (bud) bud.classList.remove('moved-up');
+                    if (flower) flower.classList.remove('bloom');
+                }
+            }
+
+            // Fungsi menjalankan animasi berurutan
+            function startBloomSequence() {
+                resetAnimation();
+
+                // Deteksi Android
+                const isAndroid = /Android/i.test(navigator.userAgent);
+                
+                // Delay
+                const delays = [100, 800, 1500, 2200, 2900];
+
+                for (let i = 1; i <= 5; i++) {
+                    const bud = document.getElementById(`bud${i}`);
+                    const flower = document.getElementById(`flower${i}`);
+
+                    // Tahap 1: bulatan foto naik
+                    setTimeout(() => {
+                        if (bud) bud.classList.add('moved-up');
+
+                        // Tahap 2: setelah naik, tunggu lalu mekar
+                        const jedaMekar = isAndroid ? 700 : 600;
+                        
+                        setTimeout(() => {
+                            if (flower) flower.classList.add('bloom');
+                        }, jedaMekar);
+                    }, delays[i-1]);
+                }
+            }
+
+            // Fungsi untuk play audio (harus dari interaksi user)
+            function playMusic() {
+                if (bgMusic) {
+                    bgMusic.volume = 0.5; // volume 50%
+                    bgMusic.play().catch(e => {
+                        console.log("Audio auto-play ditolak browser, tapi user sudah klik", e);
+                        // Coba lagi dengan volume lebih rendah
+                        setTimeout(() => {
+                            bgMusic.volume = 0.3;
+                            bgMusic.play();
+                        }, 500);
+                    });
+                }
+            }
+
+            // Transisi dari index ke flower
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // PLAY AUDIO SAAT TOMBOL DIKLIK (auto-play diijinkan karena user interaksi)
+                playMusic();
+                
+                document.body.classList.add('fade-out');
+
+                setTimeout(() => {
+                    indexDiv.style.display = 'none';
+                    flowerDiv.style.display = 'block';
+                    document.body.classList.remove('fade-out');
+
+                    // animasi foto utama tengah
+                    const fotoUtama = document.getElementById('fotoUtama');
+                    if (fotoUtama) {
+                        fotoUtama.style.transition = 'transform 1s ease, opacity 1s';
+                        fotoUtama.style.opacity = '0.5';
+                        fotoUtama.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            fotoUtama.style.opacity = '1';
+                            fotoUtama.style.transform = 'scale(1)';
+                        }, 200);
+                    }
+
+                    // jalankan animasi bunga
+                    setTimeout(() => {
+                        startBloomSequence();
+                    }, 100);
+                }, 500);
+            });
+
+            // Observer untuk jika flower tampil
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mut) => {
+                    if (mut.attributeName === 'style' && flowerDiv.style.display === 'block') {
+                        startBloomSequence();
+                    }
+                });
+            });
+            observer.observe(flowerDiv, { attributes: true });
+
+            // Reset awal
+            resetAnimation();
+        })();
+    </script>
+
+    <style>
+        /* Perbaikan posisi */
+        .flower-unit {
+            position: relative;
+        }
+        .flower {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            transform-origin: center bottom;
+        }
+        .bud-photo {
+            transition: transform 1.2s cubic-bezier(0.25, 0.1, 0.15, 1.2), opacity 0.5s;
+        }
+        .bud-photo.moved-up {
+            transform: translateY(-150px) scale(0.6);
+            opacity: 0.2;
+        }
+        .flower.bloom {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+            filter: drop-shadow(0 0 40px #ffb0d0) drop-shadow(0 0 80px #ffe2f0);
+        }
+        .flower-photo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        @media (max-width: 700px) {
+            .flower { top: -45px; }
+            .bud-photo.moved-up { transform: translateY(-115px) scale(0.6); }
+        }
+        @media (max-width: 450px) {
+            .flower { top: -35px; }
+            .bud-photo.moved-up { transform: translateY(-95px) scale(0.6); }
+        }
+    </style>
+
+    <!-- Script tambahan untuk memastikan audio jalan -->
+    <script>
+        (function() {
+            // Handle jika audio gagal load
+            const audio = document.getElementById('bgMusic');
+            
+            // Fallback kalau file ga ada - pake audio dari internet (opsional)
+            audio.addEventListener('error', function() {
+                console.log("Audio file tidak ditemukan, coba ganti dengan URL lain");
+                // Ganti dengan sumber audio online (contoh: royalty free music)
+                audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+                audio.load();
+            });
+        })();
+    </script>
+</body>
+</html>
