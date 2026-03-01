@@ -4,53 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Shella Cantikk ❤️</title>
-    <!-- Google Fonts - hanya ambil yang diperlukan -->
+    <!-- Google Fonts - system font fallback untuk kecepatan -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* RESET & DASAR - DIOPTIMALKAN */
+        /* RESET OPTIMUM */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* hilangkan highlight tap di hp */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; /* fallback cepat */
             background: #ffd9e6;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.4s ease; /* transisi lebih cepat */
+            transition: opacity 0.3s ease;
         }
         body.fade-out { opacity: 0; }
 
-        /* HALAMAN INDEX - DIOPTIMALKAN */
+        /* HALAMAN INDEX - SUPER RINGAN */
         .index-page {
             width: 100%;
             padding: 1rem;
         }
         .card-index {
-            max-width: 480px;
+            max-width: 400px; /* lebih kecil */
             margin: 0 auto;
-            background: rgba(255, 245, 245, 0.9); /* kurangin blur biar ringan */
-            backdrop-filter: blur(4px); /* blur lebih ringan */
-            -webkit-backdrop-filter: blur(4px);
+            background: rgba(255, 245, 245, 0.95);
             border-radius: 40px;
-            padding: 2rem 1.5rem 2.5rem;
-            box-shadow: 0 20px 40px -15px rgba(199, 21, 133, 0.2);
+            padding: 2rem 1.5rem;
+            box-shadow: 0 15px 30px -10px rgba(199, 21, 133, 0.2);
             text-align: center;
-            border: 1px solid rgba(255,200,220,0.5);
+            border: 1px solid rgba(255,200,220,0.3);
+            /* HAPUS backdrop-filter biar ringan */
         }
 
         .foto-bulat {
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 15px 25px -8px rgba(199,21,133,0.2), 0 0 0 4px white;
-            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(199,21,133,0.2), 0 0 0 4px white;
+            margin: 0 auto 1.2rem;
             display: block;
             background: #ffb6c1;
         }
@@ -58,56 +57,53 @@
         .card-index h2 {
             font-family: 'Playfair Display', serif;
             font-weight: 400;
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             color: #a03e5a;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
         .card-index p {
             color: #b3476b;
-            font-weight: 300;
             font-size: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .btn-mulai {
             background: white;
             border: none;
-            padding: 0.8rem 2.5rem;
+            padding: 0.8rem 2.2rem;
             border-radius: 50px;
             font-size: 1.1rem;
-            font-weight: 400;
             color: #b34167;
-            box-shadow: 0 8px 20px -8px #f28eb8;
+            box-shadow: 0 5px 15px -5px #f28eb8;
             cursor: pointer;
-            transition: transform 0.2s;
-            font-family: 'Poppins', sans-serif;
+            transition: transform 0.15s;
             border: 1px solid rgba(255,220,240,0.8);
         }
-        .btn-mulai:active { /* efek tap di hp */
-            transform: scale(0.97);
-        }
+        .btn-mulai:active { transform: scale(0.97); }
 
-        /* HALAMAN FLOWER - DIOPTIMALKAN */
+        /* HALAMAN FLOWER - RINGAN MAX */
         .flower-page {
             width: 100%;
             min-height: 100vh;
-            background: radial-gradient(circle at 50% 30%, #ffd0dd, #fbaac3);
+            background: #ffd0dd; /* flat color lebih ringan dari gradient */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 0.8rem;
+            padding: 0.5rem;
         }
 
-        .glow-bg {
+        /* GLOW pake pseudo-element biar ringan */
+        .flower-page::before {
+            content: '';
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            background: radial-gradient(ellipse at 50% 60%, rgba(255,200,230,0.5) 0%, transparent 70%); /* opacity turunin */
+            background: radial-gradient(ellipse at 50% 60%, rgba(255,200,230,0.4) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
@@ -116,203 +112,202 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 800px; /* kurangi max-width */
+            max-width: 700px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* FOTO UTAMA - diperkecil */
+        /* FOTO UTAMA - lebih kecil */
         .foto-utama-tengah {
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 20px 30px -8px #b0306e, 0 0 0 4px white, 0 0 0 8px #ffb0c3;
-            margin-bottom: 1.5rem;
+            box-shadow: 0 15px 25px -8px #b0306e, 0 0 0 4px white, 0 0 0 6px #ffb0c3;
+            margin-bottom: 1.2rem;
             background: #fbaac3;
             border: 2px solid #ffd0dd;
             z-index: 15;
+            /* GPU acceleration */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
-        /* area 5 bunga - gap dikurangi */
+        /* area 5 bunga - gap minimal */
         .bloom-area {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
             margin-top: 0.5rem;
             z-index: 10;
         }
 
-        /* setiap unit bunga - diperkecil */
+        /* setiap unit bunga - DIPERKECIL LAGI */
         .flower-unit {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 110px;
+            width: 90px;
             position: relative;
+            /* GPU acceleration */
+            transform: translateZ(0);
         }
 
-        /* batang - pendekin dikit */
+        /* batang - tipis dan pendek */
         .stem {
-            width: 4px;
-            height: 140px;
+            width: 3px;
+            height: 110px;
             background: linear-gradient(145deg, #d9a4b5, #f7c0d0);
-            border-radius: 20px;
-            box-shadow: 0 0 15px #ffb6c1;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ffb6c1;
             position: relative;
             z-index: 2;
         }
 
-        /* bulatan foto - diperkecil */
+        /* bulatan foto - kecil */
         .bud-photo {
-            width: 50px;
-            height: 50px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 8px 20px #fbaac3, 0 0 0 3px white;
-            margin-top: -25px;
-            transform: translateY(0);
-            transition: transform 1s cubic-bezier(0.25, 0.1, 0.15, 1.2), opacity 0.4s; /* transisi lebih cepat */
+            box-shadow: 0 5px 15px #fbaac3, 0 0 0 2px white;
+            margin-top: -21px;
+            transform: translateY(0) translateZ(0);
+            transition: transform 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.3s;
             position: relative;
             z-index: 20;
             background: #ffb6c1;
-            border: 2px solid white;
-            will-change: transform, opacity; /* optimasi untuk animasi */
+            border: 1.5px solid white;
+            /* GPU acceleration */
+            will-change: transform, opacity;
+            backface-visibility: hidden;
         }
 
-        /* bunga - diperkecil */
+        /* bunga - kecil */
         .flower {
-            width: 110px;
-            height: 110px;
+            width: 90px;
+            height: 90px;
             position: absolute;
-            top: -50px;
+            top: -40px;
             left: 50%;
-            transform: translateX(-50%) scale(0);
+            transform: translateX(-50%) scale(0) translateZ(0);
             opacity: 0;
-            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s;
-            filter: drop-shadow(0 0 20px #ffa5c3);
+            transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.3s;
+            filter: drop-shadow(0 0 15px #ffa5c3);
             z-index: 30;
             pointer-events: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            will-change: transform, opacity; /* optimasi */
+            /* GPU acceleration */
+            will-change: transform, opacity;
+            backface-visibility: hidden;
         }
 
-        /* kelopak - diperkecil dan kurangi shadow */
+        /* kelopak - kecil dan irit shadow */
         .petal {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background: white;
             border-radius: 60% 40% 60% 40%;
-            box-shadow: 0 0 15px #fff0f5, 2px 2px 10px rgba(240,150,180,0.2); /* shadow lebih ringan */
+            box-shadow: 0 0 8px #fff0f5, 1px 1px 5px rgba(240,150,180,0.1);
             border: 1px solid #ffe2ed;
             transform-origin: center center;
+            /* GPU acceleration */
+            backface-visibility: hidden;
         }
 
-        .petal1 { transform: rotate(0deg) translateY(-28px); background: #ffd9ec; }
-        .petal2 { transform: rotate(72deg) translateY(-28px); background: #ffe1f0; }
-        .petal3 { transform: rotate(144deg) translateY(-28px); background: #ffe9f3; width: 54px; height: 54px; }
-        .petal4 { transform: rotate(216deg) translateY(-28px); background: #ffd1e6; }
-        .petal5 { transform: rotate(288deg) translateY(-28px); background: #ffc9e2; }
+        .petal1 { transform: rotate(0deg) translateY(-22px); background: #ffd9ec; }
+        .petal2 { transform: rotate(72deg) translateY(-22px); background: #ffe1f0; }
+        .petal3 { transform: rotate(144deg) translateY(-22px); background: #ffe9f3; width: 44px; height: 44px; }
+        .petal4 { transform: rotate(216deg) translateY(-22px); background: #ffd1e6; }
+        .petal5 { transform: rotate(288deg) translateY(-22px); background: #ffc9e2; }
 
-        /* FOTO DI TENGAH BUNGA - diperkecil */
+        /* FOTO DI TENGAH BUNGA - kecil */
         .flower-photo {
-            width: 48px;
-            height: 48px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             object-fit: cover;
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px #fff0f5, 0 0 0 3px white;
-            border: 2px solid white;
+            transform: translate(-50%, -50%) translateZ(0);
+            box-shadow: 0 0 10px #fff0f5, 0 0 0 2px white;
+            border: 1.5px solid white;
             z-index: 40;
             background: #fcd1df;
+            /* GPU acceleration */
+            backface-visibility: hidden;
         }
 
-        /* kondisi bulatan naik */
+        /* kondisi bulatan naik - jarak pendek */
         .bud-photo.moved-up {
-            transform: translateY(-115px) scale(0.5);
-            opacity: 0.1;
+            transform: translateY(-90px) scale(0.4) translateZ(0);
+            opacity: 0;
         }
 
-        /* bunga mekar - dengan animasi yang SANGAT RINGAN */
+        /* bunga mekar - pake animasi SANGAT RINGAN */
         .flower.bloom {
             opacity: 1;
-            transform: translateX(-50%) scale(1);
+            transform: translateX(-50%) scale(1) translateZ(0);
+            animation: gentleSway 4s ease-in-out infinite;
         }
 
-        /* SATU ANIMASI RINGAN UNTUK SEMUA BUNGA (biar nggak berat) */
-        .flower.bloom {
-            animation: gentleFloat 3s ease-in-out infinite;
-        }
-
-        /* SATU ANIMASI UNTUK SEMUA FOTO TENGAH */
-        .flower-photo {
-            animation: softGlow 3s ease-in-out infinite;
-        }
-
-        /* ANIMASI RINGAN (cuma translateY, nggak pake scale/rotate berat) */
-        @keyframes gentleFloat {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        @keyframes softGlow {
-            0%, 100% { box-shadow: 0 0 15px #fff0f5, 0 0 0 3px white; }
-            50% { box-shadow: 0 0 25px #ffd0e6, 0 0 0 3px white; }
+        /* SATU ANIMASI RINGAN BANGET (cuma rotate dikit) */
+        @keyframes gentleSway {
+            0%, 100% { transform: translateX(-50%) rotate(0deg) translateZ(0); }
+            25% { transform: translateX(-50%) rotate(-1deg) translateZ(0); }
+            75% { transform: translateX(-50%) rotate(1deg) translateZ(0); }
         }
 
         /* footer */
         .foot-message {
             font-family: 'Playfair Display', serif;
             color: #b34b72;
-            font-weight: 300;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 1px;
-            margin-top: 1.5rem;
+            margin-top: 1.2rem;
             opacity: 0.7;
             z-index: 10;
         }
 
-        /* ========== RESPONSIVE UNTUK SEMUA HP ========== */
-        @media (max-width: 600px) {
-            .flower-unit { width: 90px; }
-            .stem { height: 120px; }
-            .bud-photo { width: 45px; height: 45px; margin-top: -22px; }
-            .bud-photo.moved-up { transform: translateY(-100px) scale(0.5); }
-            .flower { width: 95px; height: 95px; top: -40px; }
-            .petal { width: 42px; height: 42px; }
-            .petal3 { width: 46px; height: 46px; }
-            .petal1, .petal2, .petal4, .petal5 { transform: rotate(0deg) translateY(-22px); }
-            .petal2 { transform: rotate(72deg) translateY(-22px); }
-            .petal3 { transform: rotate(144deg) translateY(-22px); }
-            .petal4 { transform: rotate(216deg) translateY(-22px); }
-            .petal5 { transform: rotate(288deg) translateY(-22px); }
-            .flower-photo { width: 42px; height: 42px; }
-        }
-
-        @media (max-width: 400px) {
+        /* ========== RESPONSIVE OPTIMUM ========== */
+        @media (max-width: 500px) {
             .bloom-area { gap: 0.5rem; }
             .flower-unit { width: 75px; }
-            .stem { height: 100px; }
+            .stem { height: 95px; }
             .bud-photo { width: 38px; height: 38px; margin-top: -19px; }
-            .bud-photo.moved-up { transform: translateY(-85px) scale(0.5); }
+            .bud-photo.moved-up { transform: translateY(-80px) scale(0.4) translateZ(0); }
             .flower { width: 80px; height: 80px; top: -35px; }
-            .flower-photo { width: 35px; height: 35px; }
+            .petal { width: 35px; height: 35px; }
+            .petal3 { width: 38px; height: 38px; }
+            .petal1, .petal2, .petal4, .petal5 { transform: rotate(0deg) translateY(-18px); }
+            .petal2 { transform: rotate(72deg) translateY(-18px); }
+            .petal3 { transform: rotate(144deg) translateY(-18px); }
+            .petal4 { transform: rotate(216deg) translateY(-18px); }
+            .petal5 { transform: rotate(288deg) translateY(-18px); }
+            .flower-photo { width: 34px; height: 34px; }
+        }
+
+        @media (max-width: 350px) {
+            .flower-unit { width: 65px; }
+            .stem { height: 85px; }
+            .bud-photo { width: 34px; height: 34px; margin-top: -17px; }
+            .bud-photo.moved-up { transform: translateY(-70px) scale(0.4) translateZ(0); }
+            .flower { width: 70px; height: 70px; top: -30px; }
+            .flower-photo { width: 30px; height: 30px; }
         }
     </style>
 </head>
 <body>
-    <!-- AUDIO - preload none biar nggak berat -->
-    <audio id="bgMusic" loop preload="none">
+    <!-- AUDIO - preload metadata biar ringan -->
+    <audio id="bgMusic" loop preload="metadata">
         <source src="123.mp3" type="audio/mpeg">
     </audio>
 
@@ -320,7 +315,7 @@
     <div id="indexContainer" class="index-page">
         <div class="card-index">
             <img class="foto-bulat" id="fotoIndex" src="images/1.png" alt="foto" 
-                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'180\' height=\'180\' viewBox=\'0 0 180 180\'%3E%3Ccircle cx=\'90\' cy=\'90\' r=\'90\' fill=\'%23fbaac3\'/%3E%3Ctext x=\'90\' y=\'120\' font-size=\'70\' text-anchor=\'middle\' fill=\'white\'%3E🌸%3C/text%3E%3C/svg%3E';">
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'140\' height=\'140\' viewBox=\'0 0 140 140\'%3E%3Ccircle cx=\'70\' cy=\'70\' r=\'70\' fill=\'%23fbaac3\'/%3E%3Ctext x=\'70\' y=\'95\' font-size=\'50\' text-anchor=\'middle\' fill=\'white\'%3E🌸%3C/text%3E%3C/svg%3E';">
             <h2>untuk Shella Cantikk</h2>
             <p>Klik di sini ada sesuatu ✨</p>
             <button class="btn-mulai" id="keFlower">buka kejutan</button>
@@ -330,12 +325,10 @@
     <!-- HALAMAN FLOWER -->
     <div id="flowerContainer" style="display: none; width: 100%;">
         <div class="flower-page">
-            <div class="glow-bg"></div>
-            
             <div class="container">
                 <!-- FOTO UTAMA -->
                 <img class="foto-utama-tengah" id="fotoUtama" src="images/6.png" alt="foto utama"
-                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Ccircle cx=\'100\' cy=\'100\' r=\'100\' fill=\'%23fbaac3\'/%3E%3Ctext x=\'100\' y=\'130\' font-size=\'80\' text-anchor=\'middle\' fill=\'white\'%3E👸%3C/text%3E%3C/svg%3E';">
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'130\' height=\'130\' viewBox=\'0 0 130 130\'%3E%3Ccircle cx=\'65\' cy=\'65\' r=\'65\' fill=\'%23fbaac3\'/%3E%3Ctext x=\'65\' y=\'90\' font-size=\'50\' text-anchor=\'middle\' fill=\'white\'%3E👸%3C/text%3E%3C/svg%3E';">
 
                 <!-- area 5 bunga -->
                 <div class="bloom-area" id="bloomArea"></div>
@@ -362,52 +355,26 @@
                 'images/7.png'
             ];
 
-            // Generate 5 unit bunga (lebih cepat dengan document fragment)
-            const fragment = document.createDocumentFragment();
+            // Generate 5 unit bunga - PAKAI INNERHTML CEPAT (lebih ringan dari DOM manipulation)
+            let htmlString = '';
             for (let i = 0; i < 5; i++) {
-                const unit = document.createElement('div');
-                unit.className = 'flower-unit';
-                unit.id = `unit${i+1}`;
-
-                const stem = document.createElement('div');
-                stem.className = 'stem';
-
-                const bud = document.createElement('img');
-                bud.className = 'bud-photo';
-                bud.id = `bud${i+1}`;
-                bud.alt = 'foto bud';
-                bud.src = fotoBungaList[i];
-                bud.onerror = function() {
-                    this.src = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 60 60\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'30\' fill=\'%23fcd1df\'/%3E%3Ctext x=\'30\' y=\'40\' font-size=\'30\' text-anchor=\'middle\' fill=\'%23b34b72\'%3E🌸%3C/text%3E%3C/svg%3E';
-                };
-
-                const flower = document.createElement('div');
-                flower.className = 'flower';
-                flower.id = `flower${i+1}`;
-
-                // 5 kelopak
-                for (let p = 1; p <= 5; p++) {
-                    const petal = document.createElement('div');
-                    petal.className = `petal petal${p}`;
-                    flower.appendChild(petal);
-                }
-
-                const flowerPhoto = document.createElement('img');
-                flowerPhoto.className = 'flower-photo';
-                flowerPhoto.id = `flowerPhoto${i+1}`;
-                flowerPhoto.alt = 'foto bunga';
-                flowerPhoto.src = fotoBungaList[i];
-                flowerPhoto.onerror = function() {
-                    this.src = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 60 60\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'30\' fill=\'%23fcd1df\'/%3E%3Ctext x=\'30\' y=\'40\' font-size=\'30\' text-anchor=\'middle\' fill=\'%23b34b72\'%3E🌸%3C/text%3E%3C/svg%3E';
-                };
-                flower.appendChild(flowerPhoto);
-
-                unit.appendChild(stem);
-                unit.appendChild(bud);
-                unit.appendChild(flower);
-                fragment.appendChild(unit);
+                const num = i + 1;
+                htmlString += `
+                    <div class="flower-unit" id="unit${num}">
+                        <div class="stem"></div>
+                        <img class="bud-photo" id="bud${num}" src="${fotoBungaList[i]}" alt="foto bud" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'42\' height=\'42\' viewBox=\'0 0 42 42\'%3E%3Ccircle cx=\'21\' cy=\'21\' r=\'21\' fill=\'%23fcd1df\'/%3E%3Ctext x=\'21\' y=\'30\' font-size=\'20\' text-anchor=\'middle\' fill=\'%23b34b72\'%3E🌸%3C/text%3E%3C/svg%3E';">
+                        <div class="flower" id="flower${num}">
+                            <div class="petal petal1"></div>
+                            <div class="petal petal2"></div>
+                            <div class="petal petal3"></div>
+                            <div class="petal petal4"></div>
+                            <div class="petal petal5"></div>
+                            <img class="flower-photo" id="flowerPhoto${num}" src="${fotoBungaList[i]}" alt="foto bunga" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'38\' height=\'38\' viewBox=\'0 0 38 38\'%3E%3Ccircle cx=\'19\' cy=\'19\' r=\'19\' fill=\'%23fcd1df\'/%3E%3Ctext x=\'19\' y=\'27\' font-size=\'18\' text-anchor=\'middle\' fill=\'%23b34b72\'%3E🌸%3C/text%3E%3C/svg%3E';">
+                        </div>
+                    </div>
+                `;
             }
-            bloomArea.appendChild(fragment);
+            bloomArea.innerHTML = htmlString;
 
             // Fungsi reset animasi
             function resetAnimation() {
@@ -419,35 +386,41 @@
                 }
             }
 
-            // Fungsi animasi berurutan (dengan requestAnimationFrame biar ringan)
+            // Fungsi animasi berurutan - PAKAI requestAnimationFrame biar 60fps
             function startBloomSequence() {
                 resetAnimation();
                 
-                const delays = [100, 700, 1300, 1900, 2500]; // lebih rapat
+                // Delay lebih smooth
+                const delays = [50, 500, 950, 1400, 1850];
 
                 for (let i = 1; i <= 5; i++) {
                     const bud = document.getElementById(`bud${i}`);
                     const flower = document.getElementById(`flower${i}`);
 
                     setTimeout(() => {
-                        if (bud) bud.classList.add('moved-up');
+                        // Pake requestAnimationFrame untuk perfomance
+                        requestAnimationFrame(() => {
+                            if (bud) bud.classList.add('moved-up');
+                        });
                         
                         setTimeout(() => {
-                            if (flower) flower.classList.add('bloom');
-                        }, 500);
+                            requestAnimationFrame(() => {
+                                if (flower) flower.classList.add('bloom');
+                            });
+                        }, 450); // jeda dikurangi
                     }, delays[i-1]);
                 }
             }
 
-            // Fungsi play audio (lebih ringan)
+            // Fungsi play audio
             function playMusic() {
                 if (bgMusic) {
-                    bgMusic.volume = 0.3;
+                    bgMusic.volume = 0.2; // volume kecil
                     bgMusic.play().catch(() => {});
                 }
             }
 
-            // Transisi klik
+            // Transisi klik - pake transform biar ringan
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
                 playMusic();
@@ -460,17 +433,17 @@
 
                     const fotoUtama = document.getElementById('fotoUtama');
                     if (fotoUtama) {
-                        fotoUtama.style.transition = 'transform 0.8s ease, opacity 0.8s';
+                        fotoUtama.style.transition = 'transform 0.6s ease, opacity 0.6s';
                         fotoUtama.style.opacity = '0.5';
-                        fotoUtama.style.transform = 'scale(0.8)';
+                        fotoUtama.style.transform = 'scale(0.8) translateZ(0)';
                         setTimeout(() => {
                             fotoUtama.style.opacity = '1';
-                            fotoUtama.style.transform = 'scale(1)';
-                        }, 200);
+                            fotoUtama.style.transform = 'scale(1) translateZ(0)';
+                        }, 150);
                     }
 
                     startBloomSequence();
-                }, 400);
+                }, 300);
             });
 
             // Reset awal
