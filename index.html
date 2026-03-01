@@ -126,7 +126,6 @@
             background: #fbaac3;
             border: 2px solid #ffd0dd;
             z-index: 15;
-            transform: translateZ(0);
             animation: fotoFloat 4s ease-in-out infinite;
         }
 
@@ -149,7 +148,6 @@
             align-items: center;
             width: 90px;
             position: relative;
-            transform: translateZ(0);
         }
 
         /* batang */
@@ -171,14 +169,12 @@
             object-fit: cover;
             box-shadow: 0 5px 15px #fbaac3, 0 0 0 2px white;
             margin-top: -21px;
-            transform: translateY(0) translateZ(0);
+            transform: translateY(0);
             transition: transform 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.3s;
             position: relative;
             z-index: 20;
             background: #ffb6c1;
             border: 1.5px solid white;
-            will-change: transform, opacity;
-            backface-visibility: hidden;
         }
 
         /* bunga */
@@ -188,7 +184,7 @@
             position: absolute;
             top: -40px;
             left: 50%;
-            transform: translateX(-50%) scale(0) translateZ(0);
+            transform: translateX(-50%) scale(0);
             opacity: 0;
             transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.3s;
             filter: drop-shadow(0 0 15px #ffa5c3);
@@ -197,11 +193,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            will-change: transform, opacity;
-            backface-visibility: hidden;
         }
 
-        /* KELOPAK - pake transform masing2 biar rapi */
+        /* KELOPAK - SEMUA DIISI MANUAL */
         .petal {
             position: absolute;
             width: 40px;
@@ -210,24 +204,31 @@
             border-radius: 60% 40% 60% 40%;
             box-shadow: 0 0 8px #fff0f5, 1px 1px 5px rgba(240,150,180,0.1);
             border: 1px solid #ffe2ed;
-            transform-origin: center center;
-            backface-visibility: hidden;
-            transition: all 0.5s ease;
         }
 
-        /* POSISI KELOPAK SAAT SCALE 0 (belum mekar) */
-        .flower .petal1 { transform: scale(0) rotate(0deg) translateY(-22px); background: #ffd9ec; }
-        .flower .petal2 { transform: scale(0) rotate(72deg) translateY(-22px); background: #ffe1f0; }
-        .flower .petal3 { transform: scale(0) rotate(144deg) translateY(-22px); background: #ffe9f3; width: 44px; height: 44px; }
-        .flower .petal4 { transform: scale(0) rotate(216deg) translateY(-22px); background: #ffd1e6; }
-        .flower .petal5 { transform: scale(0) rotate(288deg) translateY(-22px); background: #ffc9e2; }
-
-        /* POSISI KELOPAK SAAT MEKAR (scale 1) */
-        .flower.bloom .petal1 { transform: scale(1) rotate(0deg) translateY(-22px); }
-        .flower.bloom .petal2 { transform: scale(1) rotate(72deg) translateY(-22px); }
-        .flower.bloom .petal3 { transform: scale(1) rotate(144deg) translateY(-22px); }
-        .flower.bloom .petal4 { transform: scale(1) rotate(216deg) translateY(-22px); }
-        .flower.bloom .petal5 { transform: scale(1) rotate(288deg) translateY(-22px); }
+        /* POSISI KELOPAK 1-5 */
+        .petal1 { 
+            transform: rotate(0deg) translateY(-22px); 
+            background: #ffd9ec; 
+        }
+        .petal2 { 
+            transform: rotate(72deg) translateY(-22px); 
+            background: #ffe1f0; 
+        }
+        .petal3 { 
+            transform: rotate(144deg) translateY(-22px); 
+            background: #ffe9f3; 
+            width: 44px; 
+            height: 44px; 
+        }
+        .petal4 { 
+            transform: rotate(216deg) translateY(-22px); 
+            background: #ffd1e6; 
+        }
+        .petal5 { 
+            transform: rotate(288deg) translateY(-22px); 
+            background: #ffc9e2; 
+        }
 
         /* FOTO DI TENGAH BUNGA */
         .flower-photo {
@@ -238,43 +239,39 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0) translateZ(0);
+            transform: translate(-50%, -50%);
             box-shadow: 0 0 10px #fff0f5, 0 0 0 2px white;
             border: 1.5px solid white;
             z-index: 40;
             background: #fcd1df;
-            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.1s;
-            backface-visibility: hidden;
         }
 
-        /* foto muncul setelah mekar */
-        .flower.bloom .flower-photo {
-            transform: translate(-50%, -50%) scale(1) translateZ(0);
+        /* SAAT BUNGA MEKAR - SCALE 1 */
+        .flower.bloom {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+            animation: flowerLive 4s ease-in-out infinite;
         }
 
         /* kondisi bulatan naik */
         .bud-photo.moved-up {
-            transform: translateY(-90px) scale(0.4) translateZ(0);
+            transform: translateY(-90px) scale(0.4);
             opacity: 0;
         }
 
-        /* ANIMASI SETELAH MEKAR - GERAK LAMBAT BIAR KELIATAN */
-        .flower.bloom {
-            animation: flowerLive 4s ease-in-out infinite;
-        }
-
+        /* ANIMASI SETELAH MEKAR */
         @keyframes flowerLive {
-            0% { transform: translateX(-50%) translateY(0) rotate(0deg) translateZ(0); }
-            25% { transform: translateX(-50%) translateY(-3px) rotate(-1deg) translateZ(0); }
-            50% { transform: translateX(-50%) translateY(1px) rotate(1deg) translateZ(0); }
-            75% { transform: translateX(-50%) translateY(-2px) rotate(-0.5deg) translateZ(0); }
-            100% { transform: translateX(-50%) translateY(0) rotate(0deg) translateZ(0); }
+            0% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+            25% { transform: translateX(-50%) translateY(-3px) rotate(-1deg); }
+            50% { transform: translateX(-50%) translateY(1px) rotate(1deg); }
+            75% { transform: translateX(-50%) translateY(-2px) rotate(-0.5deg); }
+            100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
         }
 
         /* animasi foto utama */
         @keyframes fotoFloat {
-            0%, 100% { transform: translateY(0) translateZ(0); }
-            50% { transform: translateY(-5px) translateZ(0); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         /* footer */
@@ -300,24 +297,15 @@
             .flower-unit { width: 75px; }
             .stem { height: 95px; }
             .bud-photo { width: 38px; height: 38px; margin-top: -19px; }
-            .bud-photo.moved-up { transform: translateY(-80px) scale(0.4) translateZ(0); }
+            .bud-photo.moved-up { transform: translateY(-80px) scale(0.4); }
             .flower { width: 80px; height: 80px; top: -35px; }
-            
-            .flower .petal { width: 35px; height: 35px; }
-            .flower .petal3 { width: 38px; height: 38px; }
-            
-            .flower .petal1 { transform: scale(0) rotate(0deg) translateY(-18px); }
-            .flower .petal2 { transform: scale(0) rotate(72deg) translateY(-18px); }
-            .flower .petal3 { transform: scale(0) rotate(144deg) translateY(-18px); }
-            .flower .petal4 { transform: scale(0) rotate(216deg) translateY(-18px); }
-            .flower .petal5 { transform: scale(0) rotate(288deg) translateY(-18px); }
-            
-            .flower.bloom .petal1 { transform: scale(1) rotate(0deg) translateY(-18px); }
-            .flower.bloom .petal2 { transform: scale(1) rotate(72deg) translateY(-18px); }
-            .flower.bloom .petal3 { transform: scale(1) rotate(144deg) translateY(-18px); }
-            .flower.bloom .petal4 { transform: scale(1) rotate(216deg) translateY(-18px); }
-            .flower.bloom .petal5 { transform: scale(1) rotate(288deg) translateY(-18px); }
-            
+            .petal { width: 35px; height: 35px; }
+            .petal3 { width: 38px; height: 38px; }
+            .petal1 { transform: rotate(0deg) translateY(-18px); }
+            .petal2 { transform: rotate(72deg) translateY(-18px); }
+            .petal3 { transform: rotate(144deg) translateY(-18px); }
+            .petal4 { transform: rotate(216deg) translateY(-18px); }
+            .petal5 { transform: rotate(288deg) translateY(-18px); }
             .flower-photo { width: 34px; height: 34px; }
         }
 
@@ -325,7 +313,7 @@
             .flower-unit { width: 65px; }
             .stem { height: 85px; }
             .bud-photo { width: 34px; height: 34px; margin-top: -17px; }
-            .bud-photo.moved-up { transform: translateY(-70px) scale(0.4) translateZ(0); }
+            .bud-photo.moved-up { transform: translateY(-70px) scale(0.4); }
             .flower { width: 70px; height: 70px; top: -30px; }
         }
     </style>
@@ -415,6 +403,7 @@
             function startBloomSequence() {
                 resetAnimation();
                 
+                // Delay: 100, 600, 1100, 1600, 2100
                 const delays = [100, 600, 1100, 1600, 2100];
 
                 for (let i = 1; i <= 5; i++) {
@@ -422,14 +411,10 @@
                     const flower = document.getElementById(`flower${i}`);
 
                     setTimeout(() => {
-                        requestAnimationFrame(() => {
-                            if (bud) bud.classList.add('moved-up');
-                        });
+                        if (bud) bud.classList.add('moved-up');
                         
                         setTimeout(() => {
-                            requestAnimationFrame(() => {
-                                if (flower) flower.classList.add('bloom');
-                            });
+                            if (flower) flower.classList.add('bloom');
                         }, 500);
                     }, delays[i-1]);
                 }
@@ -458,10 +443,10 @@
                     if (fotoUtama) {
                         fotoUtama.style.transition = 'transform 0.6s ease, opacity 0.6s';
                         fotoUtama.style.opacity = '0.5';
-                        fotoUtama.style.transform = 'scale(0.8) translateZ(0)';
+                        fotoUtama.style.transform = 'scale(0.8)';
                         setTimeout(() => {
                             fotoUtama.style.opacity = '1';
-                            fotoUtama.style.transform = 'scale(1) translateZ(0)';
+                            fotoUtama.style.transform = 'scale(1)';
                         }, 150);
                     }
 
